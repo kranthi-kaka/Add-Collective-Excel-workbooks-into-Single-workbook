@@ -1,0 +1,27 @@
+# Author: Kranthi_Kumar
+@kranthi-kaka
+
+#Excel_VBA to combine multiple workbooks into one single workbook
+
+Sub GetSheets()
+
+Path = "C:\Kranthi\Excel Workbooks/"  # Add your system path along with Backslash (\) at end.
+
+Filename = Dir(Path & "*.xls")
+
+Do While Filename <> ""
+
+Workbooks.Open Filename:=Path & Filename, ReadOnly:=True
+
+For Each Sheet In ActiveWorkbook.Sheets
+Sheet.Copy After:=ThisWorkbook.Sheets(1)
+
+Next Sheet
+Workbooks(Filename).Close
+
+Filename = Dir()
+Loop
+
+End Sub
+
+#End code
